@@ -10,7 +10,6 @@ import com.opencsv.CSVWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,7 +24,7 @@ public class Main {
             new EntryProps(-5f, 1f, -1f, 3f, 0.1f, 6, 6);
 
     public static void main(String[] args) {
-        List<Entry> entries = initialize();
+        List<Entry> entries = initialization();
         for (int i = 0; i < ERAS; i++) {
             // Calculate F and save results for current generation
             entries.forEach(e -> e.setF(Function.calculateF(e)));
@@ -73,57 +72,16 @@ public class Main {
         }
     }
 
-    private static List<Entry> initialize() {
-        Entry e1 = new Entry(entryProps);
-        Entry e2 = new Entry(entryProps);
-        Entry e3 = new Entry(entryProps);
-        Entry e4 = new Entry(entryProps);
-        Entry e5 = new Entry(entryProps);
-        Entry e6 = new Entry(entryProps);
-        Entry e7 = new Entry(entryProps);
-        Entry e8 = new Entry(entryProps);
-        Entry e9 = new Entry(entryProps);
-        Entry e10 = new Entry(entryProps);
-        Entry e11 = new Entry(entryProps);
-        Entry e12 = new Entry(entryProps);
-        Entry e13 = new Entry(entryProps);
-        Entry e14 = new Entry(entryProps);
-        Entry e15 = new Entry(entryProps);
-        Entry e16 = new Entry(entryProps);
-        e1.setX(-4f);
-        e2.setX(-4f);
-        e3.setX(-2f);
-        e4.setX(-2f);
-        e5.setX(0f);
-        e6.setX(0f);
-        e7.setX(-3f);
-        e8.setX(-3f);
-        e9.setX(-1f);
-        e10.setX(-1f);
-        e11.setX(-4f);
-        e12.setX(-3f);
-        e13.setX(-2f);
-        e14.setX(-1f);
-        e15.setX(0f);
-        e16.setX(0.5f);
-        e1.setY(0f);
-        e2.setY(2f);
-        e3.setY(0f);
-        e4.setY(2f);
-        e5.setY(0f);
-        e6.setY(2f);
-        e7.setY(0f);
-        e8.setY(2f);
-        e9.setY(0f);
-        e10.setY(2f);
-        e11.setY(1f);
-        e12.setY(1f);
-        e13.setY(1f);
-        e14.setY(1f);
-        e15.setY(1f);
-        e16.setY(0.5f);
-
-
-        return Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16);
+    private static List<Entry> initialization() {
+        List<Entry> entries = new LinkedList<>();
+        for (float i = -0.3f; i < 1.8f; i += 0.5f) {
+            for (float j = -4.5f; j < 0.5; j += 0.5f) {
+                Entry e = new Entry(entryProps);
+                e.setY(i);
+                e.setX(j);
+                entries.add(e);
+            }
+        }
+        return entries;
     }
 }
